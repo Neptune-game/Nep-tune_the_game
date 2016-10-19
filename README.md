@@ -13,3 +13,11 @@ L'équipe initiale de développeur était composé (par ordre alphabétique) :
 * Etienne Delay
 * Cyril Piou
 * De Rocher Chembessi
+
+## Credit
+
+Icones du logo
+* Neptune ny [wikimedia](https://fr.wikipedia.org/wiki/Neptune_%28plan%C3%A8te%29#/media/File:Neptune_symbol.svg)
+* Dollar by [Iconnice](http://www.flaticon.com/free-icon/money_131052)
+* Money bag by [Freepik](http://www.flaticon.com/free-icon/money-bag-with-dollar-symbol_61584)
+* fish by [OCHA](http://www.flaticon.com/free-icon/fish-silhouette_27847)
