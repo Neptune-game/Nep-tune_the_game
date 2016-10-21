@@ -1,6 +1,7 @@
-Nep'Tune
+Nep'Tune ![logo](img/Neptune_logo.png)
 =========
 ## Contenu du dossier
+![une idée du plateau](img/board_miniature.png)
 
 Ce dossier contient le [plateau de jeu](img/board.png) (en png et en svg) et les [règles du jeux](game_rules.md).
 
@@ -27,3 +28,8 @@ Icones du plateau :
   * whale by [Freepik](http://www.flaticon.com/free-icon/whale-breathing_85159)
   * anchor by [freepik](http://www.flaticon.com/free-icon/big-anchor_85117)
   * placeholder by [Chanut is Industries](http://www.flaticon.com/free-icon/placeholder_181508)
+
+## License
+![cc by sa](img/icone_cc.png)
+
+This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
