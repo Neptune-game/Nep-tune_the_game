@@ -21,20 +21,21 @@ Le plateau de Nep'Tune consiste en 7 "lieux de pêche" dont une qui est le port.
 
 En début de tour, les trois joueurs tire au dé l'ordre d'activité (le plus grand nombre commence).
 Chaque joueur peux alors à son tour:
-  - se déplacer en bateau = il doit payer un point de capital à la banque par mouvement entre case (limite suivant le type de bateau)
-  - pêcher des poissons (avant ou après avoir péché, limité à la capacité du bateau)
-  - vendre ses poissons s'il est sur la case du port = il reçoit 1 point de capital par poisson vendu à la banque
-  - vendre ou acheter ses poissons à un autre joueur s'il est sur la même case que celui-ci (aussi limité à la capacité du bateau)
-  - acheter un nouveau bateau s'il est sur la case du port (et son stock de poisson est vide)
+  - se déplacer en bateau = il doit payer un point de capital à la banque par mouvement entre case (limite suivant le type de bateau).
+  - pêcher des poissons (avant ou après avoir péché, limité à la capacité du bateau).
+  - vendre ses poissons s'il est sur la case du port = il reçoit 1 point de capital par poisson vendu à la banque.
+  - vendre ou acheter ses poissons à un autre joueur s'il est sur la même case que celui-ci (aussi limité à la capacité du bateau). Le prix de vente/achat est a déterminé entre les joueurs.
+  - acheter un nouveau bateau s'il est sur la case du port (et son stock de poisson est vide).
 
 Les différents types de bateaux sont:
-  - le bateau simple: peut bouger au maximum d'une case par tour et a une capacité de 5 poissons
-  - le bateau frigo:  peut bouger au maximum d'une case par tour et a une capacité de 20 poissons, il coute 10 points de capital
-  - le bateau hors-bord:  peut bouger au maximum de deux cases par tour et a une capacité de 5 poissons, il coute 10 points de capital
+  - le bateau simple: peut bouger au maximum d'une case par tour et a une capacité de 5 poissons.
+  - le bateau frigo:  peut bouger au maximum d'une case par tour et a une capacité de 20 poissons, il coute 10 points de capital.
+  - le bateau hors-bord:  peut bouger au maximum de deux cases par tour et a une capacité de 5 poissons, il coute 10 points de capital.
+Lorsqu'un joueur achète un bateau, il doit rendre celui qu'il avait précédemment.
 
 Lorsque les trois joueurs ont fini leurs activités, les poissons se reproduisent selon les règles suivantes:
-  - 0 ou 1 poisson sur la case = pas de reproduction
-  - de 2 à 4 poissons sur la case = rajout d'un poisson
+  - 0 ou 1 poisson sur la case = pas de reproduction.
+  - de 2 à 4 poissons sur la case = rajout d'un poisson.
   - lorsqu'il y a 5 poissons sur une case, sa reproduction n'augmente pas le nombre sur cette case mais transfère un poisson dans chacune des cases voisines qui n'ont pas déjà 5 poissons. A noter que la reproduction d'un case voisine ne permet pas à une case ayant moins de 2 poissons à l'origine de se reproduire.
 
 Après la reproduction des poissons, un nouveau tour commence.
@@ -51,4 +52,4 @@ Il est très intéressant de comparer les stratégies mises en place entre les t
 
 ## VARIANTE POUR JOUEURS IMPRUDENTS
 
-Il est possible qu'un joueur se retrouve au milieu de l'océan sans capital pour pouvoir rentrer (il peut avoir mal prévu...). Si tel est le cas, les autres joueurs peuvent décider d'aller l'aider. Mais si les joueurs se mettent d'accord en début de partie, il est aussi possible que la banque joue le rôle de garde côtes. Dans ce cas, un joueur au port doit informer la banque du joueur coincé en mer et payer 1 point de capital. La banque va alors aller chercher le joueur imprudent et le ramener au port. Néanmoins, celui-ci perd tous ses poissons et ne peux pas jouer jusqu'au prochain tour. 
+Il est possible qu'un joueur se retrouve au milieu de l'océan sans capital pour pouvoir rentrer (il peut avoir mal prévu...). Si tel est le cas, les autres joueurs peuvent décider d'aller l'aider. Mais si les joueurs se mettent d'accord en début de partie, il est aussi possible que la banque joue le rôle de garde côtes. Dans ce cas, un joueur au port doit informer la banque du joueur coincé en mer et payer 1 point de capital. La banque va alors aller chercher le joueur imprudent et le ramener au port. Néanmoins, celui-ci perd tous ses poissons et ne peux pas jouer jusqu'au prochain tour.
