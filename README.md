@@ -8,7 +8,7 @@ Ce dossier contient le [plateau de jeu](img/board.png) (en png et en svg) et les
 
 Neptune est un jeux de plateau développé durant le séminaire COMMONS du 13 au 18 octobre 2016 qui s'est tenu au [moulin de Richemont](http://www.openstreetmap.org/?mlat=45.7024&mlon=1.3352#map=16/45.7024/1.3352) à Saint-Priest-Ligoure.
 
-L'équipe initiale de développeur était composé (par ordre alphabétique) :
+L'équipe initiale de développeurs était composé (par ordre alphabétique) :
 * Florian Barès (CRESS Limousin)
 * De Rocher Chembessi (Laboratoire GEOLAB UMR 6042 CNRS)
 * Etienne Delay (Laboratoire GEOLAB UMR 6042 CNRS)
