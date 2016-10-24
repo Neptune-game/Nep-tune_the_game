@@ -9,7 +9,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="98.271378"
+   width="126.4342"
    height="90.487083"
    id="svg34864"
    sodipodi:version="0.32"
@@ -38,14 +38,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="29.100487"
-     inkscape:cy="79.302597"
+     inkscape:cx="33.719226"
+     inkscape:cy="79.302594"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:window-width="1920"
-     inkscape:window-height="1020"
-     inkscape:window-x="0"
-     inkscape:window-y="31"
+     inkscape:window-height="1018"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -68,7 +68,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-254.47012,-480.34219)">
+     transform="translate(-249.85138,-480.34219)">
     <g
        id="g2396"
        transform="matrix(2.1051832,0,0,2.3442008,-478.87965,-653.78847)">
@@ -108,7 +108,7 @@
       </g>
     </g>
     <g
-       transform="matrix(1.3083726,0,0,1.3083726,448.84612,474.34908)"
+       transform="matrix(0.96721385,0.88109944,-0.88109944,0.96721385,347.76568,494.24851)"
        id="g3"
        style="fill:#000000;fill-opacity:1">
       <path
@@ -156,7 +156,7 @@
       </g>
     </g>
     <g
-       transform="matrix(0.63270816,0,0,0.64909862,254.47012,486.35192)"
+       transform="matrix(0.61450059,-0.15069388,0.15459764,0.63041937,243.99526,496.37068)"
        id="g3-3">
       <path
          inkscape:connector-curvature="0"
@@ -166,7 +166,7 @@
     </g>
     <g
        id="g5084"
-       transform="matrix(1.0555861,0,0,0.96171057,-33.42269,-4.3874647)">
+       transform="matrix(1.0555861,0,0,0.96171057,105.72582,-41.258032)">
       <g
          id="g3-7"
          transform="matrix(0.09754197,-0.02084768,0.02084768,0.09754197,327.1412,538.15033)">
