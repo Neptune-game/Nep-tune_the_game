@@ -3,7 +3,7 @@ Nep'Tune ![logo](./img/Neptune_logo.png)
 ## Contenu du dossier
 ![une idée du plateau](./img/board_miniature.png)
 
-Ce dossier contient le [plateau de jeu](img/board.png) (en png et en svg), les [règles du jeux](Regles_du_jeu(FR).md) et une [TODO liste](todo.md). Une liste de [variantes](Variantes) est aussi proposée.
+Ce dossier contient le [plateau de jeu](img/board.png) (en png et en svg), les [règles du jeux](Regles_du_jeu(FR).md) et une [TODO liste](todo.md). Une liste de [variantes](Variantes.md) est aussi proposée.
 
 ## Histoire
 
