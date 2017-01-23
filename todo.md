@@ -12,3 +12,6 @@ Réunion du 24-09-2016
  * Proposer que les pions soient des bateaux à faire en pliage en papier (stimulation de départ + personnalisation et marquage en cours de jeu sur le bateau des évolutions (voir même des poissons pêchés?)) (ex.: http://ecole.saint.didier.free.fr/mdc_bateau_papier_fiche.htm)
  * Etablir des règles pour des configurations de joueurs différents: 2 joueurs = 2 bateaux chacun, 3 ou 4 joueurs = 1 bateaux chacun, 5 ou plus = faire plusieurs plateaux
  * Elaborer une histoire pour les règles du jeu (qu'en dis tu?: la ville de Tune City va mettre en place une reserve naturelle... la pêche sera interdite dans 20 mois ... il faudra faire du tourisme...  il faut faire du capital pour pouvoir développer ensuite le tourisme mais ne pas surexploiter la ressource (ou sinon il n'y aura pas de ressource du tourisme))
+ ## Idées du 21/01/2017:
+ Suite à lexprience avec l'asso Cariloes au Cars.
+ * Marius a introduit la notion de "pétrole dépensé". Ce qui pourrait donner un double objectifs aux joueurs max de tunes et min de dépenses. Est-ce que la coopération émerge plus vite ?
