@@ -1,3 +1,7 @@
+globals[
+  playernb
+]
+
 breed[places place]
 breed[players player]
 
@@ -5,6 +9,7 @@ places-own[
   nextnbfishes
   nbfishes
   harbour
+  name
 ]
 
 players-own[
@@ -22,20 +27,37 @@ players-own[
 
 to setup
   ca
+  stop-inspecting-dead-agents
   set-default-shape places "circle"
   ask patches [set pcolor sky]
   let posxlist [ 1 3 0 2 4 1 3]
   let posylist [ 0 0 2 2 2 4 4]
   let collist [ violet red green yellow black]
+
   let i 0
+  create-players nb-player[
+    set shape "boat"
+    set boat-type "simple"
+    setxy 0 2 ;(0 + (random-float 0.8) - 0.4) (2 + (random-float 0.8) - 0.4)
+    set color item i collist
+    set i i + 1
+    set capital 2
+    set history-catch (list)
+    set history-moves (list)
+    set harvest-level 1; random-float 1 ;;TODO: initialize harvest-level with more complexity?
+  ]
+
+
+  set i 0
   create-places 7 [
     set nbfishes init-fishes
     set color blue
     set size 1
     setxy item i posxlist item i posylist
+    set name ifelse-value (i = 0)["A"][ifelse-value (i = 1)["B"][ifelse-value (i = 2)["H"][ifelse-value (i = 3)["C"][ifelse-value (i = 4)["D"][ifelse-value (i = 5)["E"]["F"]]]]]]
     set i i + 1
     set harbour false
-    set label nbfishes
+    set label (word "place " name " with " nbfishes " fishes")
   ]
   ask patch 0 2 [
     ask places-here[
@@ -48,22 +70,111 @@ to setup
       create-link-with myself [set color blue]
     ]
   ]
-  set i 0
-  create-players nb-player[
-    set shape "boat"
-    set boat-type "simple"
-    setxy 0 2 ;(0 + (random-float 0.8) - 0.4) (2 + (random-float 0.8) - 0.4)
-    set color item i collist
-    set i i + 1
-    set capital 2
-    set history-catch (list)
-    set harvest-level 1; random-float 1 ;;TODO: initialize harvest-level with more complexity?
-  ]
+
   reset-ticks
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;       GO                            ;;
+;;       PLAY for interactive players     ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to play
+  if ticks > 15 [stop]
+  ask players [inspect self]
+  set playernb 0
+  while [playernb < nb-player ][
+    let currentplayer (player playernb)
+    let move? user-yes-or-no? (word "Time for player " playernb " to play." " Do you want to move?")
+    ifelse move? and [capital] of currentplayer = 0 [
+      user-message "You do not have the capital to move"
+    ][
+      if move? [
+        ask currentplayer [
+          let potential-places one-of [[name] of link-neighbors] of places-here
+          if boat-type = "speedy" [set potential-places ["A" "B" "C" "D" "E" "F" "H"]]
+          let nextplace user-one-of "choose your next location, place: " potential-places ;
+          let cost 1
+          if not member? nextplace one-of [[name] of link-neighbors] of places-here[set cost 2]
+          move-to one-of places with [name = nextplace]
+          set capital capital - cost
+          ;set history-moves lput nextplace history-moves
+        ]
+      ]
+    ]
+    let fish? user-yes-or-no? (word "Player " playernb " , do you want to fish?")
+    if fish? [
+      let available first [[nbfishes] of places-here] of currentplayer
+      let nbcaught user-one-of "how many fish do you take: " range (available + 1)
+      ask currentplayer[
+        if stock-fish + nbcaught > stock boat-type [
+          set nbcaught stock boat-type - stock-fish
+          user-message (word "You caught only " nbcaught " because your boat is full")
+        ]
+        set stock-fish stock-fish + nbcaught
+        set last-catch nbcaught
+        ;set history-catch lput last-catch history-catch
+        ask places-here [
+          set nbfishes nbfishes - nbcaught
+          set label (word "place " name " with " nbfishes " fishes")
+        ]
+      ]
+    ]
+    ask currentplayer [
+      if (one-of [harbour] of places-here) and stock-fish > 0[
+        let sell? user-yes-or-no? (word "Player " playernb " , do you want to sell your fish?")
+        if sell? [
+          set capital capital + stock-fish
+          set stock-fish 0
+        ]
+      ]
+      if capital >= 12 and (one-of [harbour] of places-here) and boat-type = "simple"[
+        let newboat-type user-one-of (word "Player " playernb " , do you want to buy a boat?") ["none" "fridge" "speedy"]
+        if newboat-type != "none" [
+          set boat-type newboat-type
+          set capital capital - 10
+          if boat-type = "fridge" [
+            set size 2
+          ]
+          if boat-type = "speedy"
+          [
+            set shape "boat 3"
+          ]
+        ]
+      ]
+
+      set history-moves lput one-of ([name] of places-here) history-moves
+      ifelse fish?
+      [set history-catch lput last-catch history-catch]
+      [set history-catch lput 0 history-catch]
+    ]
+    set playernb playernb + 1
+  ]
+  ask players [stop-inspecting self]
+  output-show (word "End of turn " ticks ". Please wait... Neptune is regenerating the fish...")
+  wait timers
+  restock-fishes
+  tick
+end
+
+to end-of-play
+  if ticks > 15[
+    let nbfi sum [nbfishes] of places
+    let nbcap sum [capital] of players
+    if (any? players with [boat-type != "simple"] ) [set nbcap nbcap + (count players with [boat-type != "simple"]) * 10]
+    let caughttot sum [sum history-catch] of players
+    let result ifelse-value (nbfi >= 20 and caughttot > (nb-player * 50 / 3 ) and nbcap > 20)["won!"]["lost..."]
+    output-show (word "End of game, there are still " nbfi " fishes in the world, you caught "caughttot " and you capitalized " nbcap " ... ")
+    output-show (word "So, you " result)
+    if result = "won!" [
+      let winner [who] of max-one-of players [capital]
+      output-show (word "... in this winning game, the most efficient player is player " winner)
+    ]
+  ]
+end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;       GO    for simulations (TODO)     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 to go
@@ -93,7 +204,7 @@ to restock-fishes
   ]
   ask places [
     set nbfishes min (list nextnbfishes 5)
-    set label nbfishes
+    set label (word "place " name " with " nbfishes " fishes")
   ]
 end
 
@@ -229,7 +340,7 @@ nb-player
 nb-player
 0
 5
-5.0
+2.0
 1
 1
 NIL
@@ -291,8 +402,8 @@ PLOT
 804
 346
 1181
-554
-Incomes
+610
+capital evolution
 NIL
 NIL
 0.0
@@ -304,6 +415,123 @@ false
 "" "ask players[\n set-plot-pen-color color\n plotxy ticks capital\n ]"
 PENS
 "default" 1.0 2 -16777216 true "" ""
+
+TEXTBOX
+12
+204
+70
+234
+Player:
+15
+0.0
+1
+
+MONITOR
+63
+193
+125
+238
+NIL
+playernb
+0
+1
+11
+
+BUTTON
+46
+134
+109
+167
+NIL
+play
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+MONITOR
+140
+174
+303
+219
+stock of fish of current player
+[stock-fish] of (player playernb)
+0
+1
+11
+
+MONITOR
+141
+222
+303
+267
+capital of current player
+[capital] of (player playernb)
+0
+1
+11
+
+PLOT
+8
+343
+298
+557
+Fish population
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot sum [nbfishes] of places"
+
+OUTPUT
+7
+563
+782
+635
+11
+
+BUTTON
+33
+248
+129
+281
+NIL
+end-of-play
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+SLIDER
+12
+95
+104
+128
+timers
+timers
+0
+5
+0.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -365,6 +593,15 @@ Rectangle -6459832 true false 150 32 157 162
 Polygon -13345367 true false 150 34 131 49 145 47 147 48 149 49
 Polygon -7500403 true true 158 33 230 157 182 150 169 151 157 156
 Polygon -7500403 true true 149 55 88 143 103 139 111 136 117 139 126 145 130 147 139 147 146 146 149 55
+
+boat 3
+false
+0
+Polygon -1 true false 63 162 90 207 223 207 290 162
+Rectangle -6459832 true false 150 32 157 162
+Polygon -13345367 true false 150 34 131 49 145 47 147 48 149 49
+Polygon -7500403 true true 158 37 172 45 188 59 202 79 217 109 220 130 218 147 204 156 158 156 161 142 170 123 170 102 169 88 165 62
+Polygon -7500403 true true 149 66 142 78 139 96 141 111 146 139 148 147 110 147 113 131 118 106 126 71
 
 box
 false
@@ -656,7 +893,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.4
+NetLogo 6.1.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
